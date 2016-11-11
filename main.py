@@ -28,6 +28,7 @@ def api():
 				point.append(str(ypoint[i]))
 			epsilon_net=check_output(point)
 			time.sleep(0.5)
+			print str(epsilon_net)
 			data1={"epsilon_net":str(epsilon_net)}
 			return jsonify(data1)
 

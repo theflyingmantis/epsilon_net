@@ -80,6 +80,8 @@ function epsilon_net()
    		}
    	else{
 		document.getElementById("numberpoints").innerHTML="Number of points are :"+String(random_points_y.length);
+		console.log(random_points_x);
+		console.log(random_points_y);
 		console.log("In Epsilon Net");
 		var secret="epsilon_net";
 		var epsilon1=document.getElementById('epsilon').value;
@@ -94,8 +96,9 @@ function epsilon_net()
 				{		
 					var string=answer.epsilon_net;
 					var k1=string.split(" ");
-					document.getElementById('final_points').innerHTML="Final Points are"+String(k1.length);
-					for(var i=0;i<k1.length;i++)
+					document.getElementById('final_points').innerHTML="Final Points are"+String(k1.length-1);
+					console.log(k1);
+					for(var i=0;i<k1.length-1;i++)
 					{
 						var k=parseInt(k1[i]);
 						change_color(random_points_x[k],random_points_y[k]);
