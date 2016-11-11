@@ -1,0 +1,36 @@
+<html>
+
+<head>
+	<title>Epsilon net Max Size for disk</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='javascript.js') }}"></script>
+</head>
+
+
+
+<body>
+	<div class="left" id="left" onmousemove="showcoordinates(event)" onclick="addbyclick(event)" onmouseout="clearcoordinates()">
+	<center></center>
+
+	</div>
+	<div class="right">
+	<center>
+		<input type="number" id="random_number">
+		<button onclick="generate_random()">Generate Random Points</button>
+		<br><br><br>
+		<p id="showcoordinates_html"></p>
+		<br><br><br>
+		X = <input type="number" id="input_x">
+		Y = <input type="number" id="input_y">
+		<button onclick="add_point()">Add Point</button>
+		<br><br><br>
+		Epsilon - <input type="text" id="epsilon">
+		<button onclick="epsilon_net()">Generate Epsilon Net</button>
+		<p id="numberpoints"></p>
+		<p id="final_points"></p>
+	</center>
+	</div>
+
+</body>
+</html>
