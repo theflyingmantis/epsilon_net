@@ -33,4 +33,4 @@ def api():
 			return jsonify(data1)
 
 if __name__ == "__main__":
-	app.run(debug=True,port=12345, use_reloader=True)
+	app.run()
