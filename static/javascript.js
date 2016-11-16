@@ -2,6 +2,7 @@
 var random_points_number=0;
 var random_points_x=[];
 var random_points_y=[];
+var previous_net=[];
 
 function generate_random()
 {
@@ -25,6 +26,11 @@ function generate_random()
    }
 }
 
+function reload1()
+{
+	location.reload();
+}
+
 function addbyclick(e)
 {
 	var x = e.clientX;
@@ -33,6 +39,8 @@ function addbyclick(e)
    	random_points_y.push(y);
    	mark_point(x,y);
 }
+
+
 
 function showcoordinates(e)
 {
@@ -79,14 +87,15 @@ function epsilon_net()
       alert('Enter Epsilon first');
    		}
    	else{
-		document.getElementById("numberpoints").innerHTML="Number of points are :"+String(random_points_y.length);
+   		if(previous_net.length!=0)
+   			clear_net();
+		document.getElementById("numberpoints").innerHTML="Total Number of points are : "+String(random_points_y.length);
 		console.log(random_points_x);
 		console.log(random_points_y);
 		console.log("In Epsilon Net");
 		var secret="epsilon_net";
 		var epsilon1=document.getElementById('epsilon').value;
 		//var data1={secret: secret, random_points_x: random_points_x, random_points_y: random_points_y,epsilon:epsilon1};
-		
 		$.ajax({
 				type:"POST",
 				url:"/api",	//Change this URL
@@ -96,11 +105,14 @@ function epsilon_net()
 				{		
 					var string=answer.epsilon_net;
 					var k1=string.split(" ");
-					document.getElementById('final_points').innerHTML="Final Points are"+String(k1.length-1);
+					document.getElementById('final_points').innerHTML="Final Number of Points are : "+String(k1.length-1);
 					console.log(k1);
+					document.getElementById('result').innerHTML="13.4 / Epsilon = "+String(13.4/epsilon1);
+					document.getElementById('epsilon_n').innerHTML="Epsilon * n = "+String(epsilon1*(k1.length-1));
 					for(var i=0;i<k1.length-1;i++)
 					{
 						var k=parseInt(k1[i]);
+						previous_net.push(k);
 						change_color(random_points_x[k],random_points_y[k]);
 					}
 					
@@ -121,6 +133,24 @@ function change_color(x,y)
 	var id=String(x)+"$"+String(y);
 	var k=document.getElementById(id);
 	k.src="hex_r.gif";
-	k.height=15;
-	k.width=15;
+	k.height=10;
+	k.width=10;
+}
+
+function clear_net()
+{
+	document.getElementById('numberpoints').innerHTML="";
+	document.getElementById('final_points').innerHTML="";
+	document.getElementById('result').innerHTML="";
+	document.getElementById('epsilon_n').innerHTML="";
+	for(var i=0;i<previous_net.length;i++)
+	{
+		var x=random_points_x[previous_net[i]];
+		var y=random_points_y[previous_net[i]];
+		var id=String(x)+"$"+String(y);
+		var k=document.getElementById(id);
+		k.src="hex_b.gif";
+		k.height=6;
+		k.width=6;
+	}
 }

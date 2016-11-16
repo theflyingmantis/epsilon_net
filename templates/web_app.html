@@ -1,10 +1,17 @@
 <html>
 
 <head>
-	<title>Epsilon net Max Size for disk</title>
+	<title>ε - Net</title>
 	<link rel="stylesheet" href="styles.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='javascript.js') }}"></script>
+ 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
+          
+	<link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/materialize.css')}}">
+	<script type="text/javascript" src="{{url_for('static',filename='js/materialize.min.js')}}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 
@@ -16,19 +23,35 @@
 	</div>
 	<div class="right">
 	<center>
-		<input type="number" id="random_number">
-		<button onclick="generate_random()">Generate Random Points</button>
-		<br><br><br>
-		<p id="showcoordinates_html"></p>
-		<br><br><br>
-		X = <input type="number" id="input_x">
-		Y = <input type="number" id="input_y">
-		<button onclick="add_point()">Add Point</button>
-		<br><br><br>
-		Epsilon - <input type="text" id="epsilon">
-		<button onclick="epsilon_net()">Generate Epsilon Net</button>
+		<h4><p class="epsilon">ε - Net (Epsilon Net)</p></h4>
+		<!-- Generate Random -->
+		<div class="row">
+			<div class="col s6"><input type="number" id="random_number" placeholder="Number of points"></div>
+	     	<div class="col s6"><a class="waves-effect waves-light btn" onclick="generate_random()">Points</a></div>
+	   	</div>
+		<br>
+		<div class="row">
+			<div class="col s4"><input type="number" id="input_x" placeholder="X"></div>
+			<div class="col s4"><input type="number" id="input_y" placeholder="Y"></div>
+			<div class="col s4"><a class="waves-effect waves-light btn" onclick="add_point()">Add Point</a></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col s6"><input type="text" id="epsilon" placeholder="Epsilon value"></div>
+			<div class="col s6"><a class="waves-effect waves-light btn" onclick="epsilon_net()">Generate Epsilon Net</a></div>
+		</div>
+		<br>
 		<p id="numberpoints"></p>
+		<p id="result"></p>
+		<p id="epsilon_n"></p>
 		<p id="final_points"></p>
+		
+		<br>
+		<div class="row">
+			<div class="col s6"> <a class="waves-effect waves-light btn" onclick="clear_net()">Clear Epsilon Net</a></div>
+			<div class="col s6"><a class="waves-effect waves-light btn" onclick="reload1()">Reset</a></div>
+		</div>
+		<p id="showcoordinates_html"></p>
 	</center>
 	</div>
 
